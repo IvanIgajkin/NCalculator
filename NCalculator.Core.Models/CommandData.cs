@@ -7,4 +7,4 @@
 /// <param name="args">Arguments for command</param>
 /// <param name="options">Options for command</param>
 /// <remarks>Options are optional and must be declared via "-"</remarks>
-public record CommandData(string command, string[] args, CommandOptions? options);
+public record CommandData(string command, string[] args, CommandOptions options);

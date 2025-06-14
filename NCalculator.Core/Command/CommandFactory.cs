@@ -18,6 +18,7 @@ public static class CommandFactory
 	{
 		return data.command.Trim() switch
 		{
+			"calc" => new CalculationCommand(data.args, data.options),
 			"gcd" => new GcdCommand(data.args, data.options),
 			"fib" => new FibonacciCommand(data.args, data.options),
 			"help" => new HelpCommand(),

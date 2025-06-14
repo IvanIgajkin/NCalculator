@@ -16,7 +16,7 @@ internal class GcdCommand : BaseCommandWithOptions, ICommand
 	Example: gcd 36 48
 	Answer: GCD of 36 and 48 is 12";
 
-	internal GcdCommand(string[] args, CommandOptions? options) : base(options)
+	internal GcdCommand(string[] args, CommandOptions options) : base(options)
 	{
 		if (args.Length < 2 && !Options.HasFlag(CommandOptions.HelpOption))
 		{

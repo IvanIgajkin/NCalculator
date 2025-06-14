@@ -34,21 +34,15 @@ Use ""quit"" to close application.";
 		}
 
 		var command = userInput[0];
-		var argsLookup = userInput
-			.Skip(1)
-			.Where(arg => !string.IsNullOrWhiteSpace(arg))
-			.ToLookup(arg => arg.StartsWith('-'));
 		
-		var args = argsLookup[false].ToArray();
-
-		var optionKeys = argsLookup[true].ToArray();
-		if (!CommandOptionsParser.TryParse(optionKeys, out var options))
-		{
-			if (optionKeys.Length > 0)
-			{
-				throw new ArgumentException("Invalid options for user command");
-			}
-		}
+		var optionKeys = userInput.FirstOrDefault(ui => ui.StartsWith('-') && ui.Length > 1)
+		                 ?? string.Empty;
+		var options = CommandOptionsParser.Parse(optionKeys);
+		
+		var args = userInput
+			.Skip(!string.IsNullOrEmpty(optionKeys) ? 2 : 1)
+			.Where(arg => !string.IsNullOrWhiteSpace(arg))
+			.ToArray();
 		
 		return new CommandData(command, args, options);
 	}

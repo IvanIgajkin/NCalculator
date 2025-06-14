@@ -16,7 +16,7 @@ internal class FibonacciCommand : BaseCommandWithOptions, ICommand
 	Example: fib 6
 	Answer: Fibonacci with number 6 is 8";
 
-	internal FibonacciCommand(string[] args, CommandOptions? options) : base(options)
+	internal FibonacciCommand(string[] args, CommandOptions options) : base(options)
 	{
 		if (!Options.HasFlag(CommandOptions.HelpOption))
 		{

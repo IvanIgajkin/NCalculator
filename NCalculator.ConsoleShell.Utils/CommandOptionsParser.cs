@@ -8,20 +8,36 @@ namespace NCalculator.ConsoleShell.Utils;
 public static class CommandOptionsParser
 {
 	/// <summary>
-	/// Try parse active options from user input
+	/// Parse active options from user input
 	/// </summary>
 	/// <param name="optionsKeys">Options keys from iser input</param>
-	/// <param name="options"></param>
-	/// <returns>True, if value was parsed, or false, if available options were not found</returns>
-	public static bool TryParse(string[] optionsKeys, out CommandOptions? options)
+	/// <returns>Available options for command (<see cref="CommandOptions"/>)</returns>
+	public static CommandOptions Parse(string optionsKeys)
 	{
-		options = null;
+		var keys = optionsKeys.Skip(1).ToArray();
 		
-		if (optionsKeys.Contains("-h"))
+		var options = new CommandOptions();
+		
+		if (keys.Contains('i'))
 		{
-			options = CommandOptions.HelpOption;
+			options |= CommandOptions.UseIntegerValues;
 		}
 		
-		return options is not null;
+		if (keys.Contains('v'))
+		{
+			options |= CommandOptions.ExpressionOutput;
+		}
+		
+		if (keys.Contains('h'))
+		{
+			if (options is not new CommandOptions())
+			{
+				throw new ApplicationException("Can't use option -h with another options");
+			}
+			
+			options |= CommandOptions.HelpOption;
+		}
+		
+		return options;
 	}
 }
