@@ -37,7 +37,7 @@ Use ""quit"" to close application.";
 		var argsLookup = userInput
 			.Skip(1)
 			.Where(arg => !string.IsNullOrWhiteSpace(arg))
-			.ToLookup(arg => arg.StartsWith("--"));
+			.ToLookup(arg => arg.StartsWith('-'));
 		
 		var args = argsLookup[false].ToArray();
 

@@ -17,7 +17,7 @@ public static class CommandOptionsParser
 	{
 		options = null;
 		
-		if (optionsKeys.Contains("--h"))
+		if (optionsKeys.Contains("-h"))
 		{
 			options = CommandOptions.HelpOption;
 		}

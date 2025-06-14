@@ -5,16 +5,20 @@ namespace NCalculator.Core.Command.Implementations;
 /// <summary>
 /// Calculate fibonacci number
 /// </summary>
-internal class FibonacciCommand : ICommand, ICommandHelp
+internal class FibonacciCommand : BaseCommandWithOptions, ICommand
 {
-	private readonly CommandOptions _options;
 	private readonly int _orderNumber;
 
-	internal FibonacciCommand(string[] args, CommandOptions? options)
-	{
-		_options = options ?? new CommandOptions();
+	protected override string HelpText => @"fib <options> <order number>
+	Available options:
+		-h: show this help about fib command (fib -h)
+	Description: calculate a fibonacci number by its order number in sequences;
+	Example: fib 6
+	Answer: Fibonacci with number 6 is 8";
 
-		if (!_options.HasFlag(CommandOptions.HelpOption))
+	internal FibonacciCommand(string[] args, CommandOptions? options) : base(options)
+	{
+		if (!Options.HasFlag(CommandOptions.HelpOption))
 		{
 			if (args.Length < 1)
 			{
@@ -30,7 +34,7 @@ internal class FibonacciCommand : ICommand, ICommandHelp
 	
 	public void Execute()
 	{
-		if (_options.HasFlag(CommandOptions.HelpOption))
+		if (Options.HasFlag(CommandOptions.HelpOption))
 		{
 			GetHelp();
 			return;
@@ -48,15 +52,5 @@ internal class FibonacciCommand : ICommand, ICommandHelp
 	private static long Fibonacci(long n)
 	{
 		return n > 2 ? Fibonacci(n - 1) + Fibonacci(n - 2) : 1;
-	}
-
-	public void GetHelp()
-	{
-		Console.WriteLine(@"fib <options> <order number>
-	Available options:
-		--h: show this help about fib command (fib --h)
-	Description: calculate a fibonacci number by its order number in sequences;
-	Example: fib 6
-	Answer: Fibonacci with number 6 is 8");
 	}
 }

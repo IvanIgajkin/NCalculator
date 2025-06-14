@@ -5,16 +5,20 @@ namespace NCalculator.Core.Command.Implementations;
 /// <summary>
 /// Calculate GCD of two numbers
 /// </summary>
-internal class GcdCommand : ICommand, ICommandHelp
+internal class GcdCommand : BaseCommandWithOptions, ICommand
 {
 	private readonly long[] _args;
-	private readonly CommandOptions _options;
 
-	internal GcdCommand(string[] args, CommandOptions? options)
+	protected override string HelpText => @"gcd <options> <first number> <second number>
+	Available options:
+		-h: show this help about gcd command (gcd -h)
+	Description: calculate a greatest common delimiter ow a two numbers;
+	Example: gcd 36 48
+	Answer: GCD of 36 and 48 is 12";
+
+	internal GcdCommand(string[] args, CommandOptions? options) : base(options)
 	{
-		_options = options ?? new CommandOptions();
-		
-		if (args.Length < 2 && !_options.HasFlag(CommandOptions.HelpOption))
+		if (args.Length < 2 && !Options.HasFlag(CommandOptions.HelpOption))
 		{
 			throw new ArgumentException("Invalid number of arguments. GCD needs at least two arguments.");
 		}
@@ -24,7 +28,7 @@ internal class GcdCommand : ICommand, ICommandHelp
 	
 	public void Execute()
 	{
-		if (_options.HasFlag(CommandOptions.HelpOption))
+		if (Options.HasFlag(CommandOptions.HelpOption))
 		{
 			GetHelp();
 			return;
@@ -43,15 +47,5 @@ internal class GcdCommand : ICommand, ICommandHelp
 	private static long Gcd(long a, long b)
 	{
 		return b == 0 ? a : Gcd(b, a % b);
-	}
-	
-	public void GetHelp()
-	{
-		Console.WriteLine(@"gcd <options> <first number> <second number>
-	Available options:
-		--h: show this help about gcd command (gcd --h)
-	Description: calculate a greatest common delimiter ow a two numbers;
-	Example: gcd 36 48
-	Answer: GCD of 36 and 48 is 12");
 	}
 }
