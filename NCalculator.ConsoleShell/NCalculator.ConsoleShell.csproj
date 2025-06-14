@@ -10,6 +10,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\NCalculator.ConsoleShell.Utils\NCalculator.ConsoleShell.Utils.csproj" />
       <ProjectReference Include="..\NCalculator.Core\NCalculator.Core.csproj" />
     </ItemGroup>
 

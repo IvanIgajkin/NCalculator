@@ -4,6 +4,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NCalculator.ConsoleShell", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NCalculator.Core", "NCalculator.Core\NCalculator.Core.csproj", "{8A0335E7-097B-4C39-9062-85F77C748FC4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NCalculator.ConsoleShell.Utils", "NCalculator.ConsoleShell.Utils\NCalculator.ConsoleShell.Utils.csproj", "{95AD61B4-6579-43D9-BB78-CC8DF0BB1AE1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NCalculator.Core.Models", "NCalculator.Core.Models\NCalculator.Core.Models.csproj", "{D340FE37-12B0-4E8F-BDB6-16463EB33637}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +22,13 @@ Global
 		{8A0335E7-097B-4C39-9062-85F77C748FC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A0335E7-097B-4C39-9062-85F77C748FC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A0335E7-097B-4C39-9062-85F77C748FC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95AD61B4-6579-43D9-BB78-CC8DF0BB1AE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95AD61B4-6579-43D9-BB78-CC8DF0BB1AE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95AD61B4-6579-43D9-BB78-CC8DF0BB1AE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95AD61B4-6579-43D9-BB78-CC8DF0BB1AE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D340FE37-12B0-4E8F-BDB6-16463EB33637}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D340FE37-12B0-4E8F-BDB6-16463EB33637}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D340FE37-12B0-4E8F-BDB6-16463EB33637}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D340FE37-12B0-4E8F-BDB6-16463EB33637}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

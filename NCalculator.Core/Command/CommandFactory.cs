@@ -18,10 +18,11 @@ public static class CommandFactory
 	{
 		return data.command.Trim() switch
 		{
-			"gcd" => new GcdCommand(data.args),
-			"fib" => new FibonacciCommand(data.args),
+			"gcd" => new GcdCommand(data.args, data.options),
+			"fib" => new FibonacciCommand(data.args, data.options),
 			"help" => new HelpCommand(),
 			"quit" => new QuitCommand(),
+			null or "" => throw new NullReferenceException("Empty input while reading command"),
 			_ => throw new ArgumentException("Unknown command")
 		};
 	}

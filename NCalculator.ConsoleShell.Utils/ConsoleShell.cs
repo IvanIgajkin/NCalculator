@@ -34,8 +34,39 @@ Use ""quit"" to close application.";
 		}
 
 		var command = userInput[0];
-		var args = userInput.Skip(1).Where(arg => !string.IsNullOrWhiteSpace(arg)).ToArray();
+		var argsLookup = userInput
+			.Skip(1)
+			.Where(arg => !string.IsNullOrWhiteSpace(arg))
+			.ToLookup(arg => arg.StartsWith("--"));
 		
-		return new CommandData(command, args);
+		var args = argsLookup[false].ToArray();
+
+		var optionKeys = argsLookup[true].ToArray();
+		if (!CommandOptionsParser.TryParse(optionKeys, out var options))
+		{
+			if (optionKeys.Length > 0)
+			{
+				throw new ArgumentException("Invalid options for user command");
+			}
+		}
+		
+		return new CommandData(command, args, options);
+	}
+
+	/// <summary>
+	/// Write application error in error stream 
+	/// </summary>
+	/// <param name="message">Message from error/exception</param>
+	public static void Error(string message)
+	{
+		Console.Error.WriteLine($"Error: {message}");
+	}
+
+	/// <summary>
+	/// Exit from application and close it
+	/// </summary>
+	public static void Exit()
+	{
+		Environment.Exit(0);
 	}
 }

@@ -14,6 +14,6 @@ while (true)
 	}
 	catch (Exception e)
 	{
-		Console.WriteLine($"Error: {e.Message}");
+		ConsoleShell.Error(e.Message);
 	}
 }
